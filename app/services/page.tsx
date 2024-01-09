@@ -1,6 +1,5 @@
 import { cn } from "@/utils/cn";
 import Image, { StaticImageData } from "next/image";
-import catering from "@/public/img/catering-outside-bright.jpg";
 import Link from "next/link";
 import { serviceList } from "./data";
 function ServicesPage() {
@@ -91,7 +90,10 @@ function BakerySection() {
       direction="ltr"
       serviceName="In-house bakery"
       tagline="Fresh delights, daily"
-      images={["/img/downtown-bakery.png", "/img/crossiont-tongs.jpg"]}
+      images={[
+        "/img/webp/downtown-bakery.webp",
+        "/img/webp/crossiont-tongs.webp",
+      ]}
     >
       Savor the irresistible charm of having our own bakery, where each day is
       crafted with the warmth of freshly baked delights.
@@ -106,9 +108,9 @@ function CateringSection() {
       serviceName="Catering"
       tagline="Culinary excellence for every occasion"
       images={[
-        "/img/catering-outside-bright.jpg",
-        "/img/catering-woman-food.png",
-        "/img/catering-woman-group.png",
+        "/img/webp/catering-outside-bright.webp",
+        "/img/webp/catering-woman-food.webp",
+        "/img/webp/catering-woman-group.webp",
       ]}
     >
       Enrich your events with our exquisite catering services, where culinary
@@ -123,7 +125,10 @@ function LiveEventsSection() {
       direction="ltr"
       serviceName="Live Events"
       tagline="Enjoy engaging experiences"
-      images={["/img/men-singing-karaoke.png", "/img/man-with-a-guitar.png"]}
+      images={[
+        "/img/webp/men-singing-karaoke.webp",
+        "/img/webp/man-with-a-guitar.webp",
+      ]}
     >
       <div className="py-2">
         <p className="font-zodiak font-semibold text-lg">Karaoke</p>
@@ -145,7 +150,7 @@ function CorporateSection() {
       direction="rtl"
       serviceName="CORPORATE PARTIES"
       tagline="Business, bliss and beyond"
-      images={["/img/women-singing-karaoke.png", "/img/people.jpg"]}
+      images={["/img/webp/women-singing-karaoke.webp", "/img/webp/people.webp"]}
     >
       Transform corporate gatherings with our expertly curated live events,
       fostering the perfect blend of professionalism, friendship and
@@ -160,7 +165,10 @@ function PrivateEventsSection() {
       direction="rtl"
       serviceName="Private Dining"
       tagline="Memorable intimate celebrations"
-      images={["/img/birthday-cake.jpg", "/img/couple-at-the-bar.jpg"]}
+      images={[
+        "/img/webp/birthday-cake.webp",
+        "/img/webp/couple-at-the-bar.webp",
+      ]}
     >
       <div className="py-2">
         <p className="font-zodiak font-semibold text-lg">Anniversaries</p>
@@ -182,7 +190,10 @@ function LiveShowsSection() {
       direction="rtl"
       serviceName="LIVE SHOWS"
       tagline="Elevate your Experience"
-      images={["/img/sathwik-magic-card.png", "/img/rose-singing.jpg" ]}
+      images={[
+        "/img/webp/sathwik-magic-card.webp",
+        "/img/webp/rose-singing.webp",
+      ]}
     >
       Transform corporate gatherings with our expertly curated live events,
       fostering the perfect blend of professionalism, friendship and
@@ -206,7 +217,10 @@ function LiveScreeningSection() {
       serviceName="LIVE
 SCREENING"
       tagline="Share the victory"
-      images={["/img/raki-serious.jpg", "/img/liverpool-screening.jpg"]}
+      images={[
+        "/img/webp/raki-serious.webp",
+        "/img/webp/liverpool-screening.webp",
+      ]}
     >
       Immerse in the thrill of live sports with our captivating screenings,
       making every moment a shared victory.
