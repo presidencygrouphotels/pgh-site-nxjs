@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Cross2Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { ReactNode, useState } from "react";
 import logo from "@/public/logo.svg";
+import { cn } from "@/utils/cn";
 
 const itemsLeft: Item[] = [
   { name: "Home", href: "/" },
@@ -45,7 +46,11 @@ function NavBar({ text }: NavBarProps) {
             ))}
           </div>
           <HamburgerMenuIcon className="sm:hidden" color="white" />
-          <div className="absolute top-0 left-0 text-pgh-white flex flex-col translate-y-full bg-pgh-black w-full text-center">
+          <div
+            className={cn(
+              "absolute top-0 left-0 text-pgh-white flex-col translate-y-full bg-pgh-black w-full text-center hidden"
+            )}
+          >
             {itemsLeft.concat(itemsRight).map((item) => (
               <Link href={item.href}>{item.name}</Link>
             ))}

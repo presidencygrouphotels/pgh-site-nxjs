@@ -237,7 +237,7 @@ function ServicesSection({
 }: SectionProps) {
   return (
     <BaseSection classNames="" direction={direction}>
-      <div className="flex-[2] flex flex-col gap-10 justify-start">
+      <div className="flex-[2] flex flex-col gap-10 h-full justify-start">
         <div className="flex flex-col justify-center items-center w-full sm:w-fit gap-1">
           <p className="font-bdo font-medium text-pgh-gold uppercase text-xs tracking-widest">
             {tagline}
