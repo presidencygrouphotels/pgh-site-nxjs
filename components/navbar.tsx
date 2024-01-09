@@ -28,7 +28,13 @@ function NavBar({ text }: NavBarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const previousScrollY = useRef(window.scrollY);
   const navbarRef = useRef(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false); 
+  const menuRef = useRef(null); 
 
+  const handleMenuToggle = () => {
+    setIsMenuOpen(!isMenuOpen);
+    console.log("State : " + isMenuOpen);
+  };
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -69,18 +75,30 @@ function NavBar({ text }: NavBarProps) {
               </Link>
             ))}
           </div>
-          <HamburgerMenuIcon className="sm:hidden" color="white" />
-          <div
-            className={cn(
-              "absolute top-0 left-0 text-pgh-white flex-col translate-y-full bg-pgh-black w-full text-center hidden"
-            )}
-          >
-            {itemsLeft.concat(itemsRight).map((item) => (
-              <Link href={item.href}>{item.name}</Link>
-            ))}
-          </div>
+          <HamburgerMenuIcon
+            className="sm:hidden"
+            onClick={handleMenuToggle}
+            color="white"
+          />
         </div>
       </nav>
+      <div
+  ref={menuRef}
+  className={cn(
+    "absolute top-full right-0 bg-pgh-black pt-2 pb-2 pl-4 pr-2",
+    isMenuOpen ? "block" : "hidden"
+  )}
+>
+  <ul className="flex flex-col gap-2">
+    {itemsLeft.concat(itemsRight).map((item) => (
+      <li key={item.name}>
+        <Link href={item.href} onClick={() => setIsMenuOpen(false)}>
+          {item.name}
+        </Link>
+      </li>
+    ))}
+  </ul>
+</div>
     </>
   );
 }
