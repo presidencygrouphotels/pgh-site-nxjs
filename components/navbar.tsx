@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Cross2Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
-import { ReactNode, useState } from "react";
+import { ReactNode, useState, useEffect, useRef } from "react";
 import logo from "@/public/logo.svg";
 
 const itemsLeft: Item[] = [
@@ -23,12 +23,36 @@ interface NavBarProps {
   text?: string;
 }
 
-//TODO: Mobile fix
 function NavBar({ text }: NavBarProps) {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const previousScrollY = useRef(window.scrollY);
+  const navbarRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY < previousScrollY.current || currentScrollY === 0) {
+        navbarRef.current.style.opacity = 1; 
+      } else {
+        navbarRef.current.style.opacity = 0; 
+      }
+
+      previousScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <>
-      <nav className="z-[30] flex flex-row items-center justify-center ph fixed top-5 left-0 w-full text-sm tracking-tight">
-        <div className=" p-5 flex  relative flex-row sm:w-[50%] w-full bg-pgh-black sm:justify-evenly justify-between items-center border-b-2 border-pgh-gold">
+      <nav
+        ref={navbarRef}
+        className={`z-[30] flex flex-row items-center justify-center ph fixed top-5 left-0 w-full text-sm tracking-tight transition-opacity duration-300`}
+      >
+        <div className="p-5 flex relative flex-row sm:w-[50%] w-full bg-pgh-black sm:justify-evenly justify-between items-center border-b-2 border-pgh-gold">
           <div className="hidden sm:flex gap-10 font-zodiak">
             {itemsLeft.map((item) => (
               <Link className="text-white" href={item.href}>
