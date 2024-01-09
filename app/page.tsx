@@ -1,113 +1,156 @@
-import Image from 'next/image'
+import Image from "next/image";
+
+import heroImage from "@/public/img/webp/hero.webp";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main
+      className="grid grid-cols-4 sm:grid-cols-12 ph min-h-screen"
+      style={{ background: "url(/pattern.svg)" }}
+    >
+      <HeroSection />
+      <AboutSection />
+      <ServicesSection />
+    </main>
+  );
+}
+
+function HeroSection() {
+  return (
+    <>
+      <div className="col-span-full relative h-[80vh] sm:h-screen -mh ph">
+        <Image
+          alt="Launch Group Image"
+          src={heroImage}
+          fill
+          placeholder="blur"
+          priority
+          style={{
+            objectFit: "cover",
+            filter: "brightness(87%)",
+            overflow: "clip",
+          }}
+        />
+        <div className="relative w-full h-full">
+          <div className="bg-pgh-black absolute bottom-[20%] left-0 text-white p-5 w-full sm:w-fit inline-block ">
+            <div className="font-zodiak uppercase font-semibold w-[19ch] text-2xl sm:text-3xl">
+              Transforming Places into{" "}
+              <span className="text-pgh-gold italic">legacies</span>
+            </div>
+            <div className="flex py-2 pb-8 font-bdo font-medium text-sm text-pgh-white text-opacity-80">
+              <div className="sm:hidden flex-grow w-0">
+                Top-notch infrastructure and integrated hospitality services.
+              </div>
+              <div className="hidden sm:flex flex-grow w-0 text-xs">
+                We specialize in delivering an experience that embraces vibrant
+                culture, offering top-notch infrastructure and seamlessly
+                integrated hospitality services.
+              </div>
+            </div>
+            <Link
+              href={"/services"}
+              className="bg-pgh-gray w-full flex p-3 justify-between items-center text-pgh-gold font-bdo uppercase font-bold"
+            >
+              <p>See Services</p>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 16"
+                fill="currentColor"
+                className="w-4 h-4"
+              >
+                <path d="M3 3.732a1.5 1.5 0 0 1 2.305-1.265l6.706 4.267a1.5 1.5 0 0 1 0 2.531l-6.706 4.268A1.5 1.5 0 0 1 3 12.267V3.732Z" />
+              </svg>
+            </Link>
+          </div>
         </div>
       </div>
+    </>
+  );
+}
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+function ServicesSection() {
+  return (
+    <>
+      <div className="col-span-full w-full h-fit flex flex-col sm:flex-row py-32 gap-10 sm:gap-20">
+        <div className="flex-[2] flex flex-col gap-5 justify-start">
+          <div className="flex flex-col justify-start items-center w-full sm:w-fit gap-1">
+            <p className="font-bdo font-medium text-pgh-gold uppercase text-xs tracking-widest">
+              Our services
+            </p>
+            <p className="font-zodiak uppercase text-3xl font-semibold text-nowrap">
+              What do we do?
+            </p>
+          </div>
+          <div className="w-full">
+            Our Services primarily include hospitality. We curate everything
+            from catering to Live Events for guests ranging from private groups
+            and individuals to large corporate gatherings.
+          </div>
+          <Link
+            href={"/services"}
+            className="bg-pgh-gray w-full flex p-3 justify-between items-center text-pgh-gold font-bdo uppercase font-bold"
+          >
+            <p>See Services</p>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              className="w-4 h-4"
+            >
+              <path d="M3 3.732a1.5 1.5 0 0 1 2.305-1.265l6.706 4.267a1.5 1.5 0 0 1 0 2.531l-6.706 4.268A1.5 1.5 0 0 1 3 12.267V3.732Z" />
+            </svg>
+          </Link>
+        </div>
+        <div className="flex-[3] w-full relative">
+          <div className="h-[400px]">{""}</div>
+          <Image
+            src={"/img/webp/services.webp"}
+            alt="About us"
+            fill
+            style={{ objectFit: "cover" }}
+          />
+        </div>
       </div>
+    </>
+  );
+}
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+function AboutSection() {
+  return (
+    <>
+      <div className="col-span-full w-full h-fit flex flex-col sm:flex-row py-32 gap-10 sm:gap-20 border-b-2 border-pgh-gold border-dashed">
+        <div className="flex-[2] flex flex-col gap-5 justify-start">
+          <div className="flex flex-col justify-start items-center w-full sm:w-fit gap-1">
+            <p className="font-bdo font-medium text-pgh-gold uppercase text-xs tracking-widest">
+              From vision to mission
+            </p>
+            <p className="font-zodiak uppercase text-3xl font-semibold text-nowrap">
+              Who are we?
+            </p>
+          </div>
+          <div className="w-full">
+            Presidency Group Hotels epitomizes refined luxury and warm
+            hospitality. Their vision is to set new standards in the industry by
+            seamlessly blending opulence with personalized care. Committed to
+            excellence, their mission is to offer impeccable service,
+            sophisticated catering, and an authentic experience that captures
+            the essence of Bengaluru's vibrant culture. With a focus on
+            innovation and guest satisfaction, Presidency Group Hotels stands as
+            a premier choice for those seeking a distinctive and indulgent
+            experiences.
+          </div>
+        </div>
+        <div className="flex-[3] w-full relative">
+          <div className="h-[400px]">{""}</div>
+          <Image
+            src={"/img/webp/ambica.webp"}
+            alt="About us"
+            fill
+            style={{ objectFit: "cover" }}
+          />
+        </div>
       </div>
-    </main>
-  )
+    </>
+  );
 }
