@@ -70,7 +70,7 @@ function DownTownSection() {
           perfection.
           <Link
             href={"https://maps.app.goo.gl/GXtNMyVsqzjanQfu5"}
-            className="bg-pgh-gray w-full flex p-3 justify-between items-center text-pgh-gold font-bdo uppercase font-bold"
+            className="bg-pgh-gray w-full flex p-3 justify-between items-center text-pgh-gold font-bdo uppercase font-bold hover:text-white"
           >
             <p>Locate Us</p>
             <svg
