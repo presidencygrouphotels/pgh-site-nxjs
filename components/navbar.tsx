@@ -24,14 +24,20 @@ function NavBar({ text }: NavBarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
 
-
+  // Create animation controls
   const menuAnimationControls = useAnimation();
 
-  const handleMenuToggle = () => {
+  const handleMenuToggle = async () => {
     setIsMenuOpen(!isMenuOpen);
     console.log("State : " + isMenuOpen);
 
-    menuAnimationControls.start({ opacity: isMenuOpen ? 1 : 0 });
+    if (isMenuOpen) {
+      // Animate out
+      await menuAnimationControls.start({ opacity: 0, x: -100 });
+    } else {
+      // Animate in
+      await menuAnimationControls.start({ opacity: 1, x: 0 });
+    }
   };
 
   useEffect(() => {
@@ -45,7 +51,8 @@ function NavBar({ text }: NavBarProps) {
       } else {
         navbarRef.current.style.opacity = "0";
         setIsMenuOpen(false);
-        menuAnimationControls.start({ opacity: 0 });
+        // Set opacity using framer motion controls
+        menuAnimationControls.start({ opacity: 0, x: -100 });
       }
 
       previousScrollY.current = currentScrollY;
@@ -79,18 +86,32 @@ function NavBar({ text }: NavBarProps) {
       >
         <div className="p-5 flex relative flex-row sm:w-[50%] w-full bg-pgh-black sm:justify-evenly justify-between items-center border-b-2 border-pgh-gold">
           <div className="hidden sm:flex gap-10 font-zodiak">
-            {itemsLeft.map((item) => (
-              <Link key={item.name} className="text-white" href={item.href}>
-                {item.name}
-              </Link>
+            {itemsLeft.map((item, index) => (
+              <motion.div
+                key={item.name}
+                initial={{ opacity: 0, x: -100 }}
+                animate={isMenuOpen ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.5, delay: isMenuOpen ? index * 0.1 : 0 }}
+              >
+                <Link className="text-white" href={item.href}>
+                  {item.name}
+                </Link>
+              </motion.div>
             ))}
           </div>
           <Image src={logo} width={150} alt="Presidency Group Hotels" />
           <div className="hidden sm:flex gap-10 font-zodiak">
-            {itemsRight.map((item) => (
-              <Link key={item.name} className="text-white" href={item.href}>
-                {item.name}
-              </Link>
+            {itemsRight.map((item, index) => (
+              <motion.div
+                key={item.name}
+                initial={{ opacity: 0, x: -100 }}
+                animate={isMenuOpen ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.5, delay: isMenuOpen ? index * 0.1 : 0 }}
+              >
+                <Link className="text-white" href={item.href}>
+                  {item.name}
+                </Link>
+              </motion.div>
             ))}
           </div>
           <HamburgerMenuIcon
@@ -100,16 +121,19 @@ function NavBar({ text }: NavBarProps) {
           />
           <motion.ul
             className={cn(
-              "absolute bottom-0 left-0 w-full text-white text-center translate-y-full bg-pgh-black flex-col py-3",
+              "absolute top-16 left-0 w-full text-white text-center translate-y-full bg-pgh-black flex-col py-3",
               isMenuOpen && "flex"
             )}
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 0, x: -100 }}
             animate={menuAnimationControls}
-          >
-            {itemsLeft.concat(itemsRight).map((item) => (
+            >
+            {itemsLeft.concat(itemsRight).map((item, index) => (
               <motion.li
                 key={item.name}
                 className="border-pgh-gold py-2 font-zodiak"
+                initial={{ y: -20, opacity: 0 }}
+                animate={isMenuOpen ? { y: 0, opacity: 1 } : {}}
+                transition={{ duration: 0.5, delay: isMenuOpen ? index * 0.1 : 0 }}
                 whileHover={{ scale: 1.1 }}
               >
                 <Link href={item.href} onClick={() => setIsMenuOpen(false)}>
