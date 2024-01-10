@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { HamburgerMenuIcon } from "@radix-ui/react-icons";
+import { HamburgerMenuIcon, Cross1Icon } from "@radix-ui/react-icons";
 import { ReactNode, useState, useEffect, useRef } from "react";
 import logo from "@/public/logo.svg";
 import { cn } from "@/utils/cn";
@@ -106,11 +106,19 @@ function NavBar({ text }: NavBarProps) {
               </motion.div>
             ))}
           </div>
-          <HamburgerMenuIcon
-            className="sm:hidden"
-            onClick={handleMenuToggle}
-            color="white"
-          />
+          {isMenuOpen ? (
+            <Cross1Icon
+              className="sm:hidden"
+              onClick={handleMenuToggle}
+              color="white"
+            />
+          ) : (
+            <HamburgerMenuIcon
+              className="sm:hidden"
+              onClick={handleMenuToggle}
+              color="white"
+            />
+          )}
           {isMenuOpen && (
             <motion.ul
               className={cn(
