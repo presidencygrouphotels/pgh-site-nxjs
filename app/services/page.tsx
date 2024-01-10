@@ -44,7 +44,7 @@ function CatalogueCard({ image, anchor, service }: CatalogueCardProps) {
         />
         <Link
           href={anchor}
-          className="absolute bottom-0 left-0 px-4 sm:px-6 py-3 font-bdo uppercase font-bold text-sm w-full bg-pgh-gray text-pgh-gold text flex justify-between items-center sm:text-base"
+          className="absolute bottom-0 left-0 px-4 sm:px-6 py-3 font-bdo uppercase font-bold text-sm w-full bg-pgh-gray text-pgh-gold text flex justify-between items-center sm:text-base hover:text-white"
         >
           <p className="">{service}</p>
           <svg

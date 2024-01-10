@@ -3,10 +3,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { HamburgerMenuIcon, Cross1Icon } from "@radix-ui/react-icons";
 import { ReactNode, useState, useEffect, useRef } from "react";
-import logo from "@/public/logo.svg";
+import { motion, useAnimation } from 'framer-motion';
 import { cn } from "@/utils/cn";
 import { usePathname } from "next/navigation";
-import { motion, useAnimation } from 'framer-motion';
+import logo from "@/public/logo.svg";
 
 interface Item {
   name: string;
@@ -64,6 +64,8 @@ function NavBar({ text }: NavBarProps) {
     { name: "Contact", href: "/contact" },
   ];
 
+  const goldenCursorClass = "cursor-pointer text-white hover:text-pgh-gold";
+
   return (
     <>
       <nav
@@ -82,14 +84,18 @@ function NavBar({ text }: NavBarProps) {
                   transition: { duration: 0.5, delay: index * 0.1 },
                 }}
               >
-                <Link key={item.name} className="text-white" href={item.href}>
+                <Link
+                  key={item.name}
+                  className={cn("text-white", goldenCursorClass)}
+                  href={item.href}
+                >
                   {item.name}
                 </Link>
               </motion.div>
             ))}
           </div>
           <Link href="/">
-              <Image src={logo} width={150} alt="Presidency Group Hotels" />
+            <Image src={logo} width={150} alt="Presidency Group Hotels" />
           </Link>
           <div className="hidden sm:flex gap-10 font-zodiak">
             {itemsRight.map((item, index) => (
@@ -102,7 +108,11 @@ function NavBar({ text }: NavBarProps) {
                   transition: { duration: 0.5, delay: index * 0.1 },
                 }}
               >
-                <Link key={item.name} className="text-white" href={item.href}>
+                <Link
+                  key={item.name}
+                  className={cn("text-white", goldenCursorClass)}
+                  href={item.href}
+                >
                   {item.name}
                 </Link>
               </motion.div>
@@ -132,7 +142,10 @@ function NavBar({ text }: NavBarProps) {
               {itemsLeft.concat(itemsRight).map((item, index) => (
                 <motion.li
                   key={item.name}
-                  className="border-pgh-gold py-2 font-zodiak"
+                  className={cn(
+                    "border-pgh-gold py-2 font-zodiak",
+                    goldenCursorClass
+                  )}
                   initial={{ x: -100, opacity: 0 }}
                   animate={{
                     x: 0,
@@ -141,7 +154,11 @@ function NavBar({ text }: NavBarProps) {
                   }}
                   whileHover={{ scale: 1.1 }}
                 >
-                  <Link href={item.href} onClick={() => setIsMenuOpen(false)}>
+                  <Link
+                    href={item.href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className={goldenCursorClass}
+                  >
                     {item.name}
                   </Link>
                 </motion.li>

@@ -50,7 +50,7 @@ function HeroSection() {
             </div>
             <Link
               href={"/services"}
-              className="bg-pgh-gray w-full flex p-3 justify-between items-center text-pgh-gold font-bdo uppercase font-bold"
+              className="bg-pgh-gray w-full flex p-3 justify-between items-center text-pgh-gold font-bdo uppercase font-bold hover:text-white"
             >
               <p>See Services</p>
               <svg
@@ -89,7 +89,7 @@ function ServicesSection() {
           </div>
           <Link
             href={"/services"}
-            className="bg-pgh-gray w-full flex p-3 justify-between items-center text-pgh-gold font-bdo uppercase font-bold"
+            className="bg-pgh-gray w-full flex p-3 justify-between items-center text-pgh-gold font-bdo uppercase font-bold hover:text-white"
           >
             <p>See Services</p>
             <svg
