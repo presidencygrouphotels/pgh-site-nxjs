@@ -158,6 +158,11 @@ select {
     font-style: normal;
   }
 
+  @layer components{
+    .heading{
+      @apply uppercase font-zodiak font-semibold
+    }
+  }
 
   @layer utilities{
     .ph{

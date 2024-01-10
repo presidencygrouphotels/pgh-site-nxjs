@@ -33,7 +33,6 @@ function NavBar({ text }: NavBarProps) {
 
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
-    console.log("State : " + isMenuOpen);
   };
   useEffect(() => {
     const handleScroll = () => {
