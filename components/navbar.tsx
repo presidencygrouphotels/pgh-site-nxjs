@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { HamburgerMenuIcon, Cross1Icon } from "@radix-ui/react-icons";
 import { ReactNode, useState, useEffect, useRef } from "react";
-import { motion, useAnimation } from 'framer-motion';
+import { motion, useAnimation } from "framer-motion";
 import { cn } from "@/utils/cn";
 import { usePathname } from "next/navigation";
 import logo from "@/public/logo.svg";
@@ -19,12 +19,10 @@ interface NavBarProps {
 }
 
 function NavBar({ text }: NavBarProps) {
-  const previousScrollY = useRef(window.scrollY);
+  const previousScrollY = useRef(0);
   const navbarRef = useRef<HTMLElement>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
-
-  const menuAnimationControls = useAnimation();
 
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);

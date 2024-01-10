@@ -64,7 +64,11 @@ function CatalogueCard({ image, anchor, service }: CatalogueCardProps) {
 function CatalogueSection() {
   return (
     <>
-      <BaseSection classNames="-mh ph pt-48 flex flex-col" direction="rtl">
+      <BaseSection
+        classNames="-mh ph pt-48 flex flex-col"
+        direction="rtl"
+        anchor=""
+      >
         <>
           <p className="uppercase font-zodiak font-semibold text-2xl py-5">
             Services
@@ -72,6 +76,7 @@ function CatalogueSection() {
           <div className="w-full grid grid-cols-2 sm:grid-cols-3 gap-3 ">
             {serviceList.map((service) => (
               <CatalogueCard
+                key={service.service}
                 service={service.service}
                 image={service.image}
                 anchor={service.anchor}
@@ -88,6 +93,7 @@ function BakerySection() {
   return (
     <ServicesSection
       direction="ltr"
+      anchor="bakery"
       serviceName="In-house bakery"
       tagline="Fresh delights, daily"
       images={[
@@ -105,6 +111,7 @@ function CateringSection() {
   return (
     <ServicesSection
       direction="rtl"
+      anchor="catering"
       serviceName="Catering"
       tagline="Culinary excellence for every occasion"
       images={[
@@ -124,6 +131,7 @@ function LiveEventsSection() {
     <ServicesSection
       direction="ltr"
       serviceName="Live Events"
+      anchor="live-events"
       tagline="Enjoy engaging experiences"
       images={[
         "/img/webp/men-singing-karaoke.webp",
@@ -148,6 +156,7 @@ function CorporateSection() {
   return (
     <ServicesSection
       direction="rtl"
+      anchor="corporate"
       serviceName="CORPORATE PARTIES"
       tagline="Business, bliss and beyond"
       images={["/img/webp/women-singing-karaoke.webp", "/img/webp/people.webp"]}
@@ -164,6 +173,7 @@ function PrivateEventsSection() {
     <ServicesSection
       direction="rtl"
       serviceName="Private Dining"
+      anchor="private"
       tagline="Memorable intimate celebrations"
       images={[
         "/img/webp/birthday-cake.webp",
@@ -188,6 +198,7 @@ function LiveShowsSection() {
   return (
     <ServicesSection
       direction="rtl"
+      anchor="live-shows"
       serviceName="LIVE SHOWS"
       tagline="Elevate your Experience"
       images={[
@@ -202,17 +213,10 @@ function LiveShowsSection() {
   );
 }
 
-interface SectionProps {
-  children: React.ReactNode;
-  direction: "rtl" | "ltr";
-  serviceName: string;
-  tagline: string;
-  images: string[];
-}
-
 function LiveScreeningSection() {
   return (
     <ServicesSection
+      anchor="screenings"
       direction="ltr"
       serviceName="LIVE
 SCREENING"
@@ -228,15 +232,25 @@ SCREENING"
   );
 }
 
+interface SectionProps {
+  children: React.ReactNode;
+  direction: "rtl" | "ltr";
+  serviceName: string;
+  tagline: string;
+  images: string[];
+  anchor: string;
+}
+
 function ServicesSection({
   children,
   direction = "rtl",
   serviceName,
   tagline,
   images,
+  anchor,
 }: SectionProps) {
   return (
-    <BaseSection classNames="" direction={direction}>
+    <BaseSection classNames="" direction={direction} anchor={anchor}>
       <div className="flex-[2] flex flex-col gap-10 h-full justify-start">
         <div className="flex flex-col justify-center items-center w-full sm:w-fit gap-1">
           <p className="font-bdo font-medium text-pgh-gold uppercase text-xs tracking-widest">
@@ -255,6 +269,7 @@ function ServicesSection({
           <img
             src={image}
             alt={image}
+            key={image}
             style={{ objectFit: "cover", overflow: "hidden" }}
           />
         ))}
@@ -267,14 +282,17 @@ function BaseSection({
   children,
   classNames,
   direction = "ltr",
+  anchor,
 }: {
   children: React.ReactNode;
   classNames?: string;
   direction: "ltr" | "rtl";
+  anchor: string;
 }) {
   return (
     <>
       <div
+        id={anchor}
         className={cn(
           "col-span-full gap-5 sm:gap-14 h-fit flex flex-col py-32 relative border-b-2 border-pgh-gold border-dashed",
           direction === "rtl" ? "sm:flex-row" : "sm:flex-row-reverse",

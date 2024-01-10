@@ -118,8 +118,8 @@ function PubSection() {
 
         <div className="w-full h-full flex sm:flex-row flex-col gap-3 ">
           {imageList.map((image) => (
-            <div className="object-cover h-full">
-              <img src={image} alt={image} className="" />
+            <div className="object-cover h-full" key={image}>
+              <img src={image} alt={image} className="" key={image} />
             </div>
           ))}
         </div>
@@ -163,8 +163,8 @@ function DinerSection() {
 
         <div className="w-full h-full flex sm:flex-row flex-col gap-3 ">
           {imageList.map((image) => (
-            <div className="object-cover h-full w-full">
-              <img src={image} alt={image} className="" />
+            <div className="object-cover h-full w-full" key={image}>
+              <img src={image} alt={image} className="" key={image} />
             </div>
           ))}
         </div>
@@ -222,10 +222,14 @@ function OtherVenturesSection() {
 
         <div className="w-full h-full flex sm:flex-row flex-col gap-3 ">
           {ventureList.map((venture) => (
-            <div className="object-cover overflow-hidden w-full h-full flex-col flex gap-5 sm:py-0 py-5">
+            <div
+              className="object-cover overflow-hidden w-full h-full flex-col flex gap-5 sm:py-0 py-5"
+              key={venture.name}
+            >
               <img
                 src={venture.image}
                 alt={venture.image}
+                key={venture.name}
                 className="h-56 object-cover"
               />
               <div className="w-full flex flex-col">
@@ -270,6 +274,7 @@ function Section({
           <img
             src={image}
             alt={image}
+            key={image}
             style={{ objectFit: "cover", overflow: "hidden" }}
           />
         ))}

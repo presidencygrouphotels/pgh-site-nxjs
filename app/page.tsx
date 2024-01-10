@@ -135,7 +135,7 @@ function AboutSection() {
             seamlessly blending opulence with personalized care. Committed to
             excellence, their mission is to offer impeccable service,
             sophisticated catering, and an authentic experience that captures
-            the essence of Bengaluru's vibrant culture. With a focus on
+            the essence of Bengaluru&apos;s vibrant culture. With a focus on
             innovation and guest satisfaction, Presidency Group Hotels stands as
             a premier choice for those seeking a distinctive and indulgent
             experiences.
