@@ -6,6 +6,7 @@ import { ReactNode, useState, useEffect, useRef } from "react";
 import logo from "@/public/logo.svg";
 import { cn } from "@/utils/cn";
 import { usePathname } from "next/navigation";
+import { useSpring, animated } from 'react-spring';
 
 const itemsLeft: Item[] = [
   { name: "Home", href: "/" },
@@ -31,6 +32,13 @@ function NavBar({ text }: NavBarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
 
+
+  const menuAnimation = useSpring({
+    opacity: isMenuOpen ? 1 : 0,
+    from: { opacity: 0 }, 
+    config: { duration: 300 } 
+  });
+
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
     console.log("State : " + isMenuOpen);
@@ -45,6 +53,7 @@ function NavBar({ text }: NavBarProps) {
         navbarRef.current.style.opacity = "1";
       } else {
         navbarRef.current.style.opacity = "0";
+        setIsMenuOpen(false); 
       }
 
       previousScrollY.current = currentScrollY;
@@ -88,11 +97,13 @@ function NavBar({ text }: NavBarProps) {
             onClick={handleMenuToggle}
             color="white"
           />
-          <ul
-            className={cn(
-              "absolute bottom-0 left-0 w-full text-white text-center translate-y-full bg-pgh-black flex-col py-3",
-              isMenuOpen ? "flex" : "hidden"
-            )}
+          <animated.ul
+        className={cn(
+          "absolute bottom-0 left-0 w-full text-white text-center translate-y-full bg-pgh-black flex-col py-3",
+          isMenuOpen && "flex"
+        )}
+        style={{ opacity: menuAnimation.opacity }} // Apply animated opacity
+      
           >
             {itemsLeft.concat(itemsRight).map((item) => (
               <li key={item.name} className="border-pgh-gold py-2 font-zodiak">
@@ -101,7 +112,7 @@ function NavBar({ text }: NavBarProps) {
                 </Link>
               </li>
             ))}
-          </ul>
+          </animated.ul>
         </div>
       </nav>
     </>
