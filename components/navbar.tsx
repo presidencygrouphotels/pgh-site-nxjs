@@ -102,7 +102,7 @@ function NavBar({ text }: NavBarProps) {
           "absolute bottom-0 left-0 w-full text-white text-center translate-y-full bg-pgh-black flex-col py-3",
           isMenuOpen && "flex"
         )}
-        style={{ opacity: menuAnimation.opacity }} // Apply animated opacity
+        style={{ opacity: menuAnimation.opacity }} 
       
           >
             {itemsLeft.concat(itemsRight).map((item) => (
