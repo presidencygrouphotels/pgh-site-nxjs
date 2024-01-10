@@ -42,7 +42,7 @@ function HeroSection() {
         <div className="relative w-full h-full">
           <div className="absolute bg-pgh-black w-full bottom-0 translate-y-[50%] uppercase h-fit flex flex-col text-center items-center justify-center py-5 gap-1">
             <p className="text-xs font-semibold text-pgh-gold tracking-widest">
-              Secondary text
+              Crafting Experiences
             </p>
             <p className="text-pgh-white font-2xl font-zodiak tracking-wide">
               About Us
@@ -213,7 +213,7 @@ function OtherVenturesSection() {
       <div className="col-span-full gap-5 sm:gap-10  flex flex-col py-32 relative border-b-2 border-pgh-gold border-dashed">
         <div className="w-full flex flex-col items-center justify-center">
           <p className="font-bdo font-medium text-pgh-gold uppercase text-xs tracking-widest">
-            Beyond ______
+            Beyond Exuberance
           </p>
           <p className="font-zodiak uppercase text-3xl font-semibold text-nowrap">
             other ventures
