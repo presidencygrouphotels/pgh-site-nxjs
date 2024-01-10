@@ -1,10 +1,11 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { Cross2Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
+import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { ReactNode, useState, useEffect, useRef } from "react";
 import logo from "@/public/logo.svg";
 import { cn } from "@/utils/cn";
+import { usePathname } from "next/navigation";
 
 const itemsLeft: Item[] = [
   { name: "Home", href: "/" },
@@ -25,11 +26,10 @@ interface NavBarProps {
 }
 
 function NavBar({ text }: NavBarProps) {
-  const [isScrolled, setIsScrolled] = useState(false);
   const previousScrollY = useRef(window.scrollY);
-  const navbarRef = useRef(null);
-  const [isMenuOpen, setIsMenuOpen] = useState(false); 
-  const menuRef = useRef(null); 
+  const navbarRef = useRef<HTMLElement>(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -39,19 +39,27 @@ function NavBar({ text }: NavBarProps) {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
+      if (navbarRef.current === null) return;
+
       if (currentScrollY < previousScrollY.current || currentScrollY === 0) {
-        navbarRef.current.style.opacity = 1; 
+        navbarRef.current.style.opacity = "1";
       } else {
-        navbarRef.current.style.opacity = 0; 
+        navbarRef.current.style.opacity = "0";
       }
 
       previousScrollY.current = currentScrollY;
     };
 
+    console.log("run");
+
     window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [navbarRef]);
+
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [pathname]);
 
   return (
     <>
@@ -80,25 +88,22 @@ function NavBar({ text }: NavBarProps) {
             onClick={handleMenuToggle}
             color="white"
           />
+          <ul
+            className={cn(
+              "absolute bottom-0 left-0 w-full text-white text-center translate-y-full bg-pgh-black flex-col py-3",
+              isMenuOpen ? "flex" : "hidden"
+            )}
+          >
+            {itemsLeft.concat(itemsRight).map((item) => (
+              <li key={item.name} className="border-pgh-gold py-2 font-zodiak">
+                <Link href={item.href} onClick={() => setIsMenuOpen(false)}>
+                  {item.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </nav>
-      <div
-  ref={menuRef}
-  className={cn(
-    "absolute top-full right-0 bg-pgh-black pt-2 pb-2 pl-4 pr-2",
-    isMenuOpen ? "block" : "hidden"
-  )}
->
-  <ul className="flex flex-col gap-2">
-    {itemsLeft.concat(itemsRight).map((item) => (
-      <li key={item.name}>
-        <Link href={item.href} onClick={() => setIsMenuOpen(false)}>
-          {item.name}
-        </Link>
-      </li>
-    ))}
-  </ul>
-</div>
     </>
   );
 }
