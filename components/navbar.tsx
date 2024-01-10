@@ -88,7 +88,9 @@ function NavBar({ text }: NavBarProps) {
               </motion.div>
             ))}
           </div>
-          <Image src={logo} width={150} alt="Presidency Group Hotels" />
+          <Link href="/">
+              <Image src={logo} width={150} alt="Presidency Group Hotels" />
+          </Link>
           <div className="hidden sm:flex gap-10 font-zodiak">
             {itemsRight.map((item, index) => (
               <motion.div
