@@ -1,4 +1,5 @@
 "use client";
+import { motion, useAnimation } from 'framer-motion';
 import Link from "next/link";
 import Image from "next/image";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
@@ -6,21 +7,12 @@ import { ReactNode, useState, useEffect, useRef } from "react";
 import logo from "@/public/logo.svg";
 import { cn } from "@/utils/cn";
 import { usePathname } from "next/navigation";
-import { useSpring, animated } from 'react-spring';
-
-const itemsLeft: Item[] = [
-  { name: "Home", href: "/" },
-  { name: "Services", href: "/services" },
-];
-const itemsRight: Item[] = [
-  { name: "About", href: "/about" },
-  { name: "Contact", href: "/contact" },
-];
 
 interface Item {
   name: string;
   href: string;
 }
+
 interface NavBarProps {
   Logo?: ReactNode;
   text?: string;
@@ -33,16 +25,15 @@ function NavBar({ text }: NavBarProps) {
   const pathname = usePathname();
 
 
-  const menuAnimation = useSpring({
-    opacity: isMenuOpen ? 1 : 0,
-    from: { opacity: 0 }, 
-    config: { duration: 300 } 
-  });
+  const menuAnimationControls = useAnimation();
 
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
     console.log("State : " + isMenuOpen);
+
+    menuAnimationControls.start({ opacity: isMenuOpen ? 1 : 0 });
   };
+
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -53,7 +44,8 @@ function NavBar({ text }: NavBarProps) {
         navbarRef.current.style.opacity = "1";
       } else {
         navbarRef.current.style.opacity = "0";
-        setIsMenuOpen(false); 
+        setIsMenuOpen(false);
+        menuAnimationControls.start({ opacity: 0 });
       }
 
       previousScrollY.current = currentScrollY;
@@ -64,11 +56,20 @@ function NavBar({ text }: NavBarProps) {
     window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [navbarRef]);
+  }, [navbarRef, menuAnimationControls]);
 
   useEffect(() => {
     setIsMenuOpen(false);
   }, [pathname]);
+
+  const itemsLeft: Item[] = [
+    { name: "Home", href: "/" },
+    { name: "Services", href: "/services" },
+  ];
+  const itemsRight: Item[] = [
+    { name: "About", href: "/about" },
+    { name: "Contact", href: "/contact" },
+  ];
 
   return (
     <>
@@ -79,7 +80,7 @@ function NavBar({ text }: NavBarProps) {
         <div className="p-5 flex relative flex-row sm:w-[50%] w-full bg-pgh-black sm:justify-evenly justify-between items-center border-b-2 border-pgh-gold">
           <div className="hidden sm:flex gap-10 font-zodiak">
             {itemsLeft.map((item) => (
-              <Link className="text-white" href={item.href}>
+              <Link key={item.name} className="text-white" href={item.href}>
                 {item.name}
               </Link>
             ))}
@@ -87,7 +88,7 @@ function NavBar({ text }: NavBarProps) {
           <Image src={logo} width={150} alt="Presidency Group Hotels" />
           <div className="hidden sm:flex gap-10 font-zodiak">
             {itemsRight.map((item) => (
-              <Link className="text-white" href={item.href}>
+              <Link key={item.name} className="text-white" href={item.href}>
                 {item.name}
               </Link>
             ))}
@@ -97,22 +98,26 @@ function NavBar({ text }: NavBarProps) {
             onClick={handleMenuToggle}
             color="white"
           />
-          <animated.ul
-        className={cn(
-          "absolute bottom-0 left-0 w-full text-white text-center translate-y-full bg-pgh-black flex-col py-3",
-          isMenuOpen && "flex"
-        )}
-        style={{ opacity: menuAnimation.opacity }} 
-      
+          <motion.ul
+            className={cn(
+              "absolute bottom-0 left-0 w-full text-white text-center translate-y-full bg-pgh-black flex-col py-3",
+              isMenuOpen && "flex"
+            )}
+            initial={{ opacity: 0 }}
+            animate={menuAnimationControls}
           >
             {itemsLeft.concat(itemsRight).map((item) => (
-              <li key={item.name} className="border-pgh-gold py-2 font-zodiak">
+              <motion.li
+                key={item.name}
+                className="border-pgh-gold py-2 font-zodiak"
+                whileHover={{ scale: 1.1 }}
+              >
                 <Link href={item.href} onClick={() => setIsMenuOpen(false)}>
                   {item.name}
                 </Link>
-              </li>
+              </motion.li>
             ))}
-          </animated.ul>
+          </motion.ul>
         </div>
       </nav>
     </>
