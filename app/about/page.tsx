@@ -118,8 +118,8 @@ function PubSection() {
 
         <div className="w-full h-full flex sm:flex-row flex-col gap-3 ">
           {imageList.map((image) => (
-            <div className="object-cover h-full">
-              <img src={image} alt={image} className="" />
+            <div className="object-cover h-full" key={image}>
+              <img src={image} alt={image} className="" key={image} />
             </div>
           ))}
         </div>
