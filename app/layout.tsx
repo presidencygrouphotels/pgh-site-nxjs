@@ -5,7 +5,23 @@ import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
   title: "Presidency Group Hotels",
-  description: "Top-notch infrastructure, Exceptional hospitality services.",
+  description: "Top-notch infrastructure and integrated hospitality services",
+
+  openGraph: {
+    title: "Presidency Group Hotels",
+    description: "Top-notch infrastructure and integrated hospitality services",
+    url: "https://presidencygrouphotels.com",
+    siteName: "Presidency Group",
+    images: [
+      {
+        url: "https://presidencygrouphotels.com/og-image.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -37,7 +53,9 @@ export default function RootLayout({
         />
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="msapplication-TileColor" content="#af996e" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#af996e" />
         <meta name="theme-color" content="#af996e" />
+        <link rel="icon" href="logo.svg" sizes="any" />
       </head>
 
       <body>
