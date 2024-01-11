@@ -1,6 +1,8 @@
-import Image from "next/image";
+import ExportedImage from "next-image-export-optimizer";
 
-import heroImage from "@/public/img/webp/hero.webp";
+import heroImage from "@/public/img/hero.webp";
+import aboutImage from "@/public/img/ambica.webp";
+import sevicesImage from "@/public/img/services.webp";
 import Link from "next/link";
 
 export default function Home() {
@@ -20,7 +22,7 @@ function HeroSection() {
   return (
     <>
       <div className="col-span-full relative h-[80vh] sm:h-screen -mh ph">
-        <Image
+        <ExportedImage
           alt="Launch Group Image"
           src={heroImage}
           fill
@@ -104,8 +106,8 @@ function ServicesSection() {
         </div>
         <div className="flex-[3] w-full relative">
           <div className="h-[400px]">{""}</div>
-          <Image
-            src={"/img/webp/services.webp"}
+          <ExportedImage
+            src={sevicesImage}
             alt="About us"
             fill
             style={{ objectFit: "cover" }}
@@ -143,8 +145,8 @@ function AboutSection() {
         </div>
         <div className="flex-[3] w-full relative">
           <div className="h-[400px]">{""}</div>
-          <Image
-            src={"/img/webp/ambica.webp"}
+          <ExportedImage
+            src={aboutImage}
             alt="About us"
             fill
             style={{ objectFit: "cover" }}

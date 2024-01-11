@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import Image from "next/image";
+import ExportedImage from "next-image-export-optimizer";
 import { HamburgerMenuIcon, Cross1Icon } from "@radix-ui/react-icons";
 import { ReactNode, useState, useEffect, useRef } from "react";
 import { motion, useAnimation } from "framer-motion";
@@ -93,7 +93,11 @@ function NavBar({ text }: NavBarProps) {
             ))}
           </div>
           <Link href="/">
-            <Image src={logo} width={150} alt="Presidency Group Hotels" />
+            <ExportedImage
+              src={logo}
+              width={150}
+              alt="Presidency Group Hotels"
+            />
           </Link>
           <div className="hidden sm:flex gap-10 font-zodiak">
             {itemsRight.map((item, index) => (

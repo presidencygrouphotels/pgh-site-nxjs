@@ -2,6 +2,7 @@ import { cn } from "@/utils/cn";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import { serviceList } from "./data";
+import ExportedImage from "next-image-export-optimizer";
 function ServicesPage() {
   return (
     <>
@@ -34,7 +35,7 @@ function CatalogueCard({ image, anchor, service }: CatalogueCardProps) {
   return (
     <>
       <div className="bg-black relative aspect-square">
-        <Image
+        <ExportedImage
           src={image}
           alt={service}
           fill
@@ -96,10 +97,7 @@ function BakerySection() {
       anchor="bakery"
       serviceName="In-house bakery"
       tagline="Fresh delights, daily"
-      images={[
-        "/img/webp/downtown-bakery.webp",
-        "/img/webp/crossiont-tongs.webp",
-      ]}
+      images={["/img/downtown-bakery.webp", "/img/crossiont-tongs.webp"]}
     >
       Savor the irresistible charm of having our own bakery, where each day is
       crafted with the warmth of freshly baked delights.
@@ -112,12 +110,12 @@ function CateringSection() {
     <ServicesSection
       direction="rtl"
       anchor="catering"
-      serviceName="Catering"
-      tagline="Culinary excellence for every occasion"
+      serviceName="CorporatCatering"
+      tagline="Culinary excellence"
       images={[
-        "/img/webp/catering-outside-bright.webp",
-        "/img/webp/catering-woman-food.webp",
-        "/img/webp/catering-woman-group.webp",
+        "/img/catering-outside-bright.webp",
+        "/img/catering-woman-food.webp",
+        "/img/catering-woman-group.webp",
       ]}
     >
       Enrich your events with our exquisite catering services, where culinary
@@ -132,11 +130,8 @@ function LiveEventsSection() {
       direction="ltr"
       serviceName="Live Events"
       anchor="live-events"
-      tagline="Enjoy engaging experiences"
-      images={[
-        "/img/webp/men-singing-karaoke.webp",
-        "/img/webp/man-with-a-guitar.webp",
-      ]}
+      tagline="engaging experiences"
+      images={["/img/men-singing-karaoke.webp", "/img/man-with-a-guitar.webp"]}
     >
       <div className="py-2">
         <p className="font-zodiak font-semibold text-lg">Karaoke</p>
@@ -159,7 +154,7 @@ function CorporateSection() {
       anchor="corporate"
       serviceName="CORPORATE PARTIES"
       tagline="Business, bliss and beyond"
-      images={["/img/webp/women-singing-karaoke.webp", "/img/webp/people.webp"]}
+      images={["/img/women-singing-karaoke.webp", "/img/people.webp"]}
     >
       Transform corporate gatherings with our expertly curated live events,
       fostering the perfect blend of professionalism, friendship and
@@ -174,11 +169,8 @@ function PrivateEventsSection() {
       direction="rtl"
       serviceName="Private Dining"
       anchor="private"
-      tagline="Memorable intimate celebrations"
-      images={[
-        "/img/webp/birthday-cake.webp",
-        "/img/webp/couple-at-the-bar.webp",
-      ]}
+      tagline="intimate celebrations"
+      images={["/img/birthday-cake.webp", "/img/couple-at-the-bar.webp"]}
     >
       <div className="py-2">
         <p className="font-zodiak font-semibold text-lg">Anniversaries</p>
@@ -201,10 +193,7 @@ function LiveShowsSection() {
       anchor="live-shows"
       serviceName="LIVE SHOWS"
       tagline="Elevate your Experience"
-      images={[
-        "/img/webp/sathwik-magic-card.webp",
-        "/img/webp/rose-singing.webp",
-      ]}
+      images={["/img/sathwik-magic-card.webp", "/img/rose-singing.webp"]}
     >
       Transform corporate gatherings with our expertly curated live events,
       fostering the perfect blend of professionalism, friendship and
@@ -221,10 +210,7 @@ function LiveScreeningSection() {
       serviceName="LIVE
 SCREENING"
       tagline="Share the victory"
-      images={[
-        "/img/webp/raki-serious.webp",
-        "/img/webp/liverpool-screening.webp",
-      ]}
+      images={["/img/raki-serious.webp", "/img/liverpool-screening.webp"]}
     >
       Immerse in the thrill of live sports with our captivating screenings,
       making every moment a shared victory.
@@ -251,27 +237,51 @@ function ServicesSection({
 }: SectionProps) {
   return (
     <BaseSection classNames="" direction={direction} anchor={anchor}>
-      <div className="flex-[2] flex flex-col gap-10 h-full justify-start">
-        <div className="flex flex-col justify-center items-center w-full sm:w-fit gap-1">
-          <p className="font-bdo font-medium text-pgh-gold uppercase text-xs tracking-widest">
-            {tagline}
-          </p>
-          <p className="font-zodiak uppercase text-3xl font-semibold text-nowrap">
-            {serviceName}
-          </p>
+      <div className="flex-[2] flex flex-col gap-20 h-full w-full">
+        <div className="h-fit w-ful">
+          <div className="flex flex-col h-fit justify-center items-center w-full sm:w-fit gap-1">
+            <p className="font-bdo font-medium text-pgh-gold uppercase text-xs tracking-widest">
+              {tagline}
+            </p>
+            <p className="font-zodiak uppercase text-3xl font-semibold text-nowrap">
+              {serviceName}
+            </p>
+          </div>
+          <div className="w-full h-fit">{children}</div>
         </div>
-
-        <div className="w-full h-full">{children}</div>
-        <img src={images[0]} alt={images[0]} style={{ objectFit: "cover" }} />
+        <ExportedImage
+          src={images[0]}
+          alt={images[0]}
+          width="0"
+          height="0"
+          sizes="100vw"
+          className="w-full h-auto"
+        />
       </div>
-      <div className="flex-[3] flex flex-col sm:flex-row sm:gap-14 gap-5">
+      <div className="flex-[3] flex h-full w-full flex-col sm:flex-row sm:gap-14 gap-5">
         {images.slice(1).map((image) => (
-          <img
-            src={image}
-            alt={image}
-            key={image}
-            style={{ objectFit: "cover", overflow: "hidden" }}
-          />
+          <>
+            <div className="relative w-full h-full hidden sm:block">
+              <ExportedImage
+                src={image}
+                alt={image}
+                key={image}
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className="sm:hidden">
+              <ExportedImage
+                src={image}
+                alt={image}
+                key={image}
+                width="0"
+                height="0"
+                sizes="16vw, 32vw, 48vw, 64vw, 96vw, 128vw, 256vw, 384vw"
+                className="w-full h-auto"
+              />
+            </div>
+          </>
         ))}
       </div>
     </BaseSection>
@@ -294,7 +304,7 @@ function BaseSection({
       <div
         id={anchor}
         className={cn(
-          "col-span-full gap-5 sm:gap-14 h-fit flex flex-col py-32 relative border-b-2 border-pgh-gold border-dashed",
+          "col-span-full gap-5 sm:gap-14 h-full flex flex-col py-32 relative border-b-2 border-pgh-gold border-dashed",
           direction === "rtl" ? "sm:flex-row" : "sm:flex-row-reverse",
           classNames!
         )}

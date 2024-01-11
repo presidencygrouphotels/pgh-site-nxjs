@@ -1,9 +1,9 @@
-import Image from "next/image";
+import ExportedImage from "next-image-export-optimizer";
 import Link from "next/link";
 import pubLogo from "@/public/logos/pub-black.png";
 import dinerLogo from "@/public/logos/diner-black.png";
 
-import heroImage from "@/public/img/webp/presidency-collage.webp";
+import heroImage from "@/public/img/presidency-collage.webp";
 import { cn } from "@/utils/cn";
 
 function AboutPage() {
@@ -27,7 +27,7 @@ function HeroSection() {
   return (
     <>
       <div className="col-span-full relative h-[40vh] sm:h-[75vh] -mh ph">
-        <Image
+        <ExportedImage
           alt="Launch Group Image"
           src={heroImage}
           fill
@@ -44,7 +44,7 @@ function HeroSection() {
             <p className="text-xs font-semibold text-pgh-gold tracking-widest">
               Crafting Experiences
             </p>
-            <p className="text-pgh-white font-2xl font-zodiak tracking-wide">
+            <p className="text-pgh-white text-4xl font-zodiak tracking-wide">
               About Us
             </p>
           </div>
@@ -59,7 +59,7 @@ function DownTownSection() {
     <>
       <Section
         direction="rtl"
-        images={["/img/webp/chefs.webp"]}
+        images={["/img/chefs.webp"]}
         serviceName="Downtown"
         tagline="Pub & Diner"
       >
@@ -97,9 +97,9 @@ function DownTownSection() {
 
 function PubSection() {
   const imageList = [
-    "/img/webp/downtown-bar-counter.webp",
-    "/img/webp/downtown-corner-sofas.webp",
-    "/img/webp/downtown-tables.webp",
+    "/img/downtown-bar-counter.webp",
+    "/img/downtown-corner-sofas.webp",
+    "/img/downtown-tables.webp",
   ];
 
   return (
@@ -109,7 +109,7 @@ function PubSection() {
           <p className="font-medium text-pgh-gold text-center uppercase tracking-widest">
             In the neighbourhood since 1992
           </p>
-          <Image
+          <ExportedImage
             src={pubLogo}
             alt="Downtown Taproom Pub"
             className="sm:w-[60%]"
@@ -142,9 +142,9 @@ function PubSection() {
 
 function DinerSection() {
   const imageList = [
-    "/img/webp/diner-facing-kitchen.webp",
-    "/img/webp/diner-route-66-projector.webp",
-    "/img/webp/diner-wonder-woman-pillar.webp",
+    "/img/diner-facing-kitchen.webp",
+    "/img/diner-route-66-projector.webp",
+    "/img/diner-wonder-woman-pillar.webp",
   ];
 
   return (
@@ -154,7 +154,7 @@ function DinerSection() {
           <p className="font-medium text-pgh-gold text-center uppercase tracking-widest">
             Classic American dining
           </p>
-          <Image
+          <ExportedImage
             src={dinerLogo}
             alt="Downtown Taproom Pub"
             className="sm:w-[60%]"
@@ -192,19 +192,19 @@ function OtherVenturesSection() {
       name: "AMBICA CONSTRUCTIONS & CONTRACTORS",
       description:
         "Executed major industrial, institutional and residential projects since 2011. 20+ international and domestic infrastructure projects in India and GCC Countries.",
-      image: "/img/webp/ambica.webp",
+      image: "/img/ambica.webp",
     },
     {
       name: "GANBEI RESTAURANTS",
       description:
         " An upcoming brewery in Koramangala, Bengaluru, promises a unique and vibrant experience for beer enthusiasts. Situated in the heart of the city, it blends modern aesthetics and a trendy ambiance.",
-      image: "/img/webp/ganbeii.webp",
+      image: "/img/ganbeii.webp",
     },
     {
       name: "PRESIDENCY HOSPITALITY AND RESORTS",
       description:
         " Premier hospitality company specializing in five-star category hostels and PG accommodations, redefining urban living with luxurious amenities.",
-      image: "/img/webp/presidency-dorm.webp",
+      image: "/img/presidency-dorm.webp",
     },
   ];
 
