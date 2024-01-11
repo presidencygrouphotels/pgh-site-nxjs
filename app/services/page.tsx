@@ -110,7 +110,7 @@ function CateringSection() {
     <ServicesSection
       direction="rtl"
       anchor="catering"
-      serviceName="CorporatCatering"
+      serviceName="Corporate Catering"
       tagline="Culinary excellence"
       images={[
         "/img/catering-outside-bright.webp",
@@ -152,7 +152,7 @@ function CorporateSection() {
     <ServicesSection
       direction="rtl"
       anchor="corporate"
-      serviceName="CORPORATE PARTIES"
+      serviceName="Corporate events"
       tagline="Business, bliss and beyond"
       images={["/img/women-singing-karaoke.webp", "/img/people.webp"]}
     >
@@ -238,7 +238,7 @@ function ServicesSection({
   return (
     <BaseSection classNames="" direction={direction} anchor={anchor}>
       <div className="flex-[2] flex flex-col gap-20 h-full w-full">
-        <div className="h-fit w-ful">
+        <div className="h-fit w-full flex gap-2 flex-col">
           <div className="flex flex-col h-fit justify-center items-center w-full sm:w-fit gap-1">
             <p className="font-bdo font-medium text-pgh-gold uppercase text-xs tracking-widest">
               {tagline}
