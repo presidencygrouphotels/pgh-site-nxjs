@@ -1,3 +1,4 @@
+import ContactForm from "@/components/form";
 import Link from "next/link";
 import { Children, ReactNode } from "react";
 
@@ -9,6 +10,7 @@ function ContactPage() {
         style={{ background: "url(/pattern.svg)" }}
       >
         <ContactSection />
+        <ContactForm/>
       </main>
     </>
   );
@@ -50,6 +52,7 @@ function ContactSection() {
           </ContactCard>
         </div>
       </div>
+      
     </>
   );
 }
