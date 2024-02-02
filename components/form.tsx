@@ -1,6 +1,9 @@
 "use client"
 import Script from "next/script";
 import { FormEvent, FormEventHandler, useState } from "react";
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 export default function ContactForm() {
   
@@ -87,15 +90,15 @@ export default function ContactForm() {
 
             
           </div>
-            <Script>
+            <Script id="captcha-script">
             {`function captchaSubmit(token){
-                console.log(token)
-                let formData = new FormData(document.getElementById('c-form'))
-                fetch("/api/form",{
-                    method:"POST",
-                    body: formData
-                })
-      }`}
+              console.log(token)
+              let formData = new FormData(document.getElementById('c-form'))
+              fetch("/api/form",{
+                method:"POST",
+                body: formData
+              })
+            }`}
             </Script>
           <button 
           data-sitekey="6LdbVWQpAAAAAJcE4c84LFmHnLHYEg3DMGNhQnPZ" 
